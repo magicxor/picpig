@@ -11,15 +11,12 @@ namespace PicPig.Services;
 
 public class Txt2ImgService
 {
-    private readonly ILogger<Txt2ImgService> _logger;
     private readonly Txt2ImgQueryParser _txt2ImgQueryParser;
     private readonly Client _stableDiffusionClient;
 
-    public Txt2ImgService(ILogger<Txt2ImgService> logger,
-        Txt2ImgQueryParser txt2ImgQueryParser,
+    public Txt2ImgService(Txt2ImgQueryParser txt2ImgQueryParser,
         Client stableDiffusionClient)
     {
-        _logger = logger;
         _txt2ImgQueryParser = txt2ImgQueryParser;
         _stableDiffusionClient = stableDiffusionClient;
     }
