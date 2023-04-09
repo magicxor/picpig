@@ -71,33 +71,32 @@ public class TelegramBotService
                     chosenInlineResult.Query.Length,
                     chosenInlineResult.Query);
 
-                var generateImageResult = await _txt2ImgService.GenerateImageAsync(chosenInlineResult.Query, cancellationToken);
-                generateImageResult.Switch(
-                    async txt2ImgResult =>
+                try
+                {
+                    var generateImageResult = await _txt2ImgService.GenerateImageAsync(chosenInlineResult.Query, cancellationToken);
+
+                    var photoMsg = await botClient.SendPhotoAsync(_options.MediaCacheGroupChatId,
+                        new InputMedia(generateImageResult.ImageStream, "StableDiffusionImage"), cancellationToken: cancellationToken);
+                    if (photoMsg.Photo != null)
                     {
-                        var photoMsg = await botClient.SendPhotoAsync(_options.MediaCacheGroupChatId,
-                            new InputMedia(txt2ImgResult.ImageStream, "StableDiffusionImage"), cancellationToken: cancellationToken);
-                        if (photoMsg.Photo != null)
-                        {
-                            await botClient.EditMessageMediaAsync(
-                                inlineMessageId: chosenInlineResult.InlineMessageId,
-                                media: new InputMediaPhoto(new InputMedia(photoMsg.Photo.First().FileId)),
-                                cancellationToken: cancellationToken);
-                            await botClient.EditMessageCaptionAsync(
-                                inlineMessageId: chosenInlineResult.InlineMessageId,
-                                caption: $"{txt2ImgResult.Query.PresetFactory.GetType().Name} ({txt2ImgResult.ElapsedTime.Humanize()}): {(txt2ImgResult.Query.IgnoreDefaultPrompt ? "!" : "")}{txt2ImgResult.Query.UserPositivePrompt}",
-                                cancellationToken: cancellationToken);
-                        }
-                    },
-                    async exception =>
-                    {
-                        _logger.LogError(exception, "Error while generating image");
+                        await botClient.EditMessageMediaAsync(
+                            inlineMessageId: chosenInlineResult.InlineMessageId,
+                            media: new InputMediaPhoto(new InputMedia(photoMsg.Photo.First().FileId)),
+                            cancellationToken: cancellationToken);
                         await botClient.EditMessageCaptionAsync(
                             inlineMessageId: chosenInlineResult.InlineMessageId,
-                            caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}",
+                            caption: $"{generateImageResult.Query.PresetFactory.GetType().Name} ({generateImageResult.ElapsedTime.Humanize()}): {(generateImageResult.Query.IgnoreDefaultPrompt ? "!" : "")}{generateImageResult.Query.UserPositivePrompt}",
                             cancellationToken: cancellationToken);
                     }
-                );
+                }
+                catch(Exception exception)
+                {
+                    _logger.LogError(exception, "Error while generating an image");
+                    await botClient.EditMessageCaptionAsync(
+                        inlineMessageId: chosenInlineResult.InlineMessageId,
+                        caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}",
+                        cancellationToken: cancellationToken);
+                }
             }
         }
         catch (Exception e)

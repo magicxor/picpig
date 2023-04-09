@@ -1,4 +1,3 @@
-using OneOf;
 using PicPig.Enums;
 using PicPig.Exceptions;
 using PicPig.Txt2ImgPresets;
@@ -28,35 +27,35 @@ public class PresetFactoryProvider
         _random = random;
     }
 
-    public OneOf<BasePresetFactory, ServiceException> GetPresetFactory(string name)
+    public BasePresetFactory GetPresetFactory(string name)
     {
         return _presetFactories.TryGetValue(name, out var presetFactory)
             ? presetFactory
-            : new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
+            : throw new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
                 new Dictionary<string, string>{ { "method", nameof(GetPresetFactory) }, { "key", nameof(name) }, { nameof(name), name } });
     }
 
-    public OneOf<BasePresetFactory, ServiceException> GetPresetFactory(int index)
+    public BasePresetFactory GetPresetFactory(int index)
     {
         return index < _presetFactories.Count && index >= 0
             ? _presetFactories.ElementAt(index).Value
-            : new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
+            : throw new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
                 new Dictionary<string, string>{ { "method", nameof(GetPresetFactory) }, { "key", nameof(index) }, { nameof(index), index.ToString() } });
     }
 
-    public OneOf<BasePresetFactory, ServiceException> GetRandomPresetFactory()
+    public BasePresetFactory GetRandomPresetFactory()
     {
         return _presetFactories.Count != 0
             ? _presetFactories.ElementAt(_random.Next(0, _presetFactories.Count)).Value
-            : new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
+            : throw new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
                 new Dictionary<string, string>{ { "method", nameof(GetRandomPresetFactory) } });
     }
 
-    public OneOf<BasePresetFactory, ServiceException> GetDefaultPresetFactory()
+    public BasePresetFactory GetDefaultPresetFactory()
     {
         return _presetFactories.Count != 0
             ? _presetFactories.First().Value
-            : new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
+            : throw new ServiceException(LocalizationKeys.Errors.Txt2Img.PresetFactoryNotFound,
                 new Dictionary<string, string>{ { "method", nameof(GetDefaultPresetFactory) } });
     }
 }

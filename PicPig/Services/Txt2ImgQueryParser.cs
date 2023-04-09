@@ -1,6 +1,4 @@
 using System.Text.RegularExpressions;
-using OneOf;
-using PicPig.Exceptions;
 using PicPig.Models;
 
 namespace PicPig.Services;
@@ -17,16 +15,13 @@ public class Txt2ImgQueryParser
         _presetFactoryProvider = presetFactoryProvider;
     }
 
-    public OneOf<Txt2ImgQuery, ServiceException> Parse(string userQuery)
+    public Txt2ImgQuery Parse(string userQuery)
     {
         var formattedQuery = userQuery.Trim();
         if (string.IsNullOrWhiteSpace(formattedQuery) || formattedQuery == RandomMarker)
         {
-            var presetFactoryResult = _presetFactoryProvider.GetRandomPresetFactory();
-            return presetFactoryResult
-                .Match<OneOf<Txt2ImgQuery, ServiceException>>(presetFactory => new Txt2ImgQuery(presetFactory, string.Empty, false),
-                    exception => exception
-                );
+            var presetFactory = _presetFactoryProvider.GetRandomPresetFactory();
+            return new Txt2ImgQuery(presetFactory, string.Empty, false);
         }
         else
         {
@@ -36,16 +31,13 @@ public class Txt2ImgQueryParser
             var overrideFlagCapture = groups["override"].Captures.FirstOrDefault();
             var promptCapture = groups["prompt"].Captures.FirstOrDefault();
 
-            var presetFactoryResult = int.TryParse(presetCapture?.Value, out var presetFactoryIndex)
+            var presetFactory = int.TryParse(presetCapture?.Value, out var presetFactoryIndex)
                 ? _presetFactoryProvider.GetPresetFactory(presetFactoryIndex)
                 : _presetFactoryProvider.GetDefaultPresetFactory();
             var userPositivePrompt = promptCapture?.Value ?? string.Empty;
             var ignoreDefaultPrompt = overrideFlagCapture?.Value == "!" && !string.IsNullOrWhiteSpace(userPositivePrompt);
 
-            return presetFactoryResult
-                .Match<OneOf<Txt2ImgQuery, ServiceException>>(presetFactory => new Txt2ImgQuery(presetFactory, userPositivePrompt, ignoreDefaultPrompt),
-                    exception => exception
-                );
+            return new Txt2ImgQuery(presetFactory, userPositivePrompt, ignoreDefaultPrompt);
         }
     }
 }

@@ -1,6 +1,4 @@
 using System.Diagnostics;
-using OneOf;
-using OneOf.Types;
 using PicPig.Enums;
 using PicPig.Exceptions;
 using PicPig.Models;
@@ -21,22 +19,16 @@ public class Txt2ImgService
         _stableDiffusionClient = stableDiffusionClient;
     }
 
-    public async Task<OneOf<Txt2ImgResult, ServiceException>> GenerateImageAsync(string userQuery,
+    public async Task<Txt2ImgResult> GenerateImageAsync(string userQuery,
         CancellationToken cancellationToken)
     {
-        var queryParseResult = _txt2ImgQueryParser.Parse(userQuery);
-        return await queryParseResult.Match<Task<OneOf<Txt2ImgResult, ServiceException>>>(
-            async txt2ImgQuery =>
-            {
-                var stopwatch = Stopwatch.StartNew();
-                var txt2ImgResult = await GenerateImageAsync(txt2ImgQuery, cancellationToken);
-                stopwatch.Stop();
+        var txt2ImgQuery = _txt2ImgQueryParser.Parse(userQuery);
 
-                return txt2ImgResult.Match<OneOf<Txt2ImgResult, ServiceException>>(
-                    stream => new Txt2ImgResult(stream, txt2ImgQuery, stopwatch.Elapsed),
-                    exception => exception);
-            },
-            exception => Task.FromResult<OneOf<Txt2ImgResult, ServiceException>>(exception));
+        var stopwatch = Stopwatch.StartNew();
+        var imageStream = await GenerateImageAsync(txt2ImgQuery, cancellationToken);
+        stopwatch.Stop();
+
+        return new Txt2ImgResult(imageStream, txt2ImgQuery, stopwatch.Elapsed);
     }
 
     public async Task<TextToImageResponse> GetStableDiffusionResponseAsync(StableDiffusionProcessingTxt2Img request,
@@ -52,14 +44,14 @@ public class Txt2ImgService
         outputStream.Position = 0;
     }
 
-    public async Task<OneOf<Success, ServiceException>> StableDiffusionResponseToStreamAsync(TextToImageResponse textToImageResponse,
+    public async Task StableDiffusionResponseToStreamAsync(TextToImageResponse textToImageResponse,
         bool compress,
         Stream outputStream,
         CancellationToken cancellationToken)
     {
         if (textToImageResponse.Images == null || textToImageResponse.Images.Count == 0)
         {
-            return new ServiceException(LocalizationKeys.Errors.Txt2Img.NoImagesReturned);
+            throw new ServiceException(LocalizationKeys.Errors.Txt2Img.NoImagesReturned);
         }
 
         var imageBase64 = textToImageResponse.Images.First();
@@ -73,11 +65,9 @@ public class Txt2ImgService
         {
             await outputStream.WriteAsync(imageBytes, cancellationToken);
         }
-
-        return new Success();
     }
 
-    public async Task<OneOf<Stream, ServiceException>> GenerateImageAsync(Txt2ImgQuery txt2ImgQuery,
+    public async Task<Stream> GenerateImageAsync(Txt2ImgQuery txt2ImgQuery,
         CancellationToken cancellationToken)
     {
         try
@@ -91,14 +81,13 @@ public class Txt2ImgService
             var response = await GetStableDiffusionResponseAsync(requestData, cancellationToken);
 
             var outputStream = new MemoryStream();
-            var result = await StableDiffusionResponseToStreamAsync(response, true, outputStream, cancellationToken);
+            await StableDiffusionResponseToStreamAsync(response, true, outputStream, cancellationToken);
 
-            return await result.Match<Task<OneOf<Stream, ServiceException>>>(_ => Task.FromResult<OneOf<Stream, ServiceException>>(outputStream),
-                serviceException => Task.FromResult<OneOf<Stream, ServiceException>>(serviceException));
+            return outputStream;
         }
         catch (Exception e)
         {
-            return new ServiceException(LocalizationKeys.Errors.Txt2Img.ErrorQueryingStableDiffusion,
+            throw new ServiceException(LocalizationKeys.Errors.Txt2Img.ErrorQueryingStableDiffusion,
                 e,
                 new Dictionary<string, string>
                 {
