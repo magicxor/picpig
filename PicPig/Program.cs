@@ -44,6 +44,7 @@ public class Program
                     .ValidateOnStart();
 
                 services.AddHttpClient(nameof(HttpClientTypes.WaitAndRetryOnTransientHttpError))
+                    .ConfigureHttpClient(client => client.Timeout = TimeSpan.FromMinutes(5))
                     .AddPolicyHandler(HttpRetryPolicy);
 
                 var stableDiffusionApiAddress = hostContext.Configuration.GetStableDiffusionApiAddress()
