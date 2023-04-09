@@ -38,7 +38,10 @@ public class Program
             .ConfigureServices((hostContext, services) =>
             {
                 services
-                    .Configure<PicPigOptions>(hostContext.Configuration.GetSection(nameof(OptionSections.PicPig)));
+                    .AddOptions<PicPigOptions>()
+                    .Bind(hostContext.Configuration.GetSection(nameof(OptionSections.PicPig)))
+                    .ValidateDataAnnotations()
+                    .ValidateOnStart();
 
                 services.AddHttpClient(nameof(HttpClientTypes.WaitAndRetryOnTransientHttpError))
                     .AddPolicyHandler(HttpRetryPolicy);
