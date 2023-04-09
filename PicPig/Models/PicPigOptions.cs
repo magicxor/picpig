@@ -18,6 +18,9 @@ public class PicPigOptions
     public required string LoadingProgressJpegBase64 { get; init; }
 
     [Required]
+    public required string LoadingProgressImageId { get; init; }
+
+    [Required]
     [Url]
     public required string StableDiffusionApiAddress { get; set; }
 }

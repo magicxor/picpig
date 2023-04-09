@@ -24,11 +24,12 @@ public class Program
 
                 var telegramBotApiKey = hostContext.Configuration.GetTelegramBotApiKey()
                                         ?? throw new ServiceException(LocalizationKeys.Errors.Configuration.TelegramBotApiKeyMissing);
-                services.AddScoped<TelegramBotClient>(_ => new TelegramBotClient(telegramBotApiKey));
+                services.AddScoped<ITelegramBotClient, TelegramBotClient>(_ => new TelegramBotClient(telegramBotApiKey));
 
                 services.AddScoped<PresetFactoryProvider>();
                 services.AddScoped<Txt2ImgQueryParser>();
                 services.AddScoped<Txt2ImgService>();
+                services.AddScoped<TelegramBotService>();
 
                 services.AddHostedService<Worker>();
             })
