@@ -62,10 +62,8 @@ public class Worker : BackgroundService
                 throw new ServiceException(LocalizationKeys.Errors.Telegram.LoadingProgressPictureIdIsNull);
             }
 
-            if (update.InlineQuery is not null)
+            if (update.InlineQuery is { } inlineQuery)
             {
-                var inlineQuery = update.InlineQuery;
-
                 await botClient.AnswerInlineQueryAsync(inlineQuery.Id, new List<InlineQueryResult>
                 {
                     new InlineQueryResultCachedPhoto(Guid.NewGuid().ToString(), _loadingProgressPictureId)
