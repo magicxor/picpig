@@ -8,7 +8,7 @@ public abstract class BasePresetFactory
 
     public abstract string DefaultPositivePrompt { get; }
 
-    public abstract  string DefaultNegativePrompt { get; }
+    public abstract string DefaultNegativePrompt { get; }
 
     public abstract StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps);
 }
