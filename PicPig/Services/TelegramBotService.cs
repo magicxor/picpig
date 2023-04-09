@@ -85,7 +85,7 @@ public class TelegramBotService
                             cancellationToken: cancellationToken);
                         await botClient.EditMessageCaptionAsync(
                             inlineMessageId: chosenInlineResult.InlineMessageId,
-                            caption: $"{generateImageResult.Query.PresetFactory.GetType().Name} ({generateImageResult.ElapsedTime.Humanize()}): {(generateImageResult.Query.IgnoreDefaultPrompt ? "!" : "")}{generateImageResult.Query.UserPositivePrompt}",
+                            caption: $"{generateImageResult.Query.PresetFactory.GetType().Name} ({generateImageResult.ElapsedTime.Humanize()}): {(generateImageResult.Query.IgnoreDefaultPrompt ? "!" : "")}{generateImageResult.Query.UserPositivePrompt}".Cut(256),
                             cancellationToken: cancellationToken);
                     }
                 }
@@ -94,7 +94,7 @@ public class TelegramBotService
                     _logger.LogError(exception, "Error while generating an image");
                     await botClient.EditMessageCaptionAsync(
                         inlineMessageId: chosenInlineResult.InlineMessageId,
-                        caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}",
+                        caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}".Cut(256),
                         cancellationToken: cancellationToken);
                 }
             }
