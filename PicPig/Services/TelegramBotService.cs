@@ -40,7 +40,7 @@ public class TelegramBotService
         Update update,
         CancellationToken cancellationToken)
     {
-        _logger.LogTrace("Received update with type={update}", update.Type.ToString());
+        _logger.LogInformation("Received update with type={update}", update.Type.ToString());
         ThreadPool.QueueUserWorkItem(async _ => await HandleUpdateFunction(botClient, update, cancellationToken));
     }
 

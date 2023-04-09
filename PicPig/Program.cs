@@ -1,3 +1,6 @@
+using NLog;
+using NLog.Config;
+using NLog.Extensions.Logging;
 using PicPig.Enums;
 using PicPig.Exceptions;
 using PicPig.Extensions;
@@ -7,6 +10,7 @@ using Polly;
 using Polly.Extensions.Http;
 using StableDiffusionClient;
 using Telegram.Bot;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace PicPig;
 
@@ -16,9 +20,21 @@ public class Program
         .HandleTransientHttpError()
         .WaitAndRetryAsync(10, retryAttempt => TimeSpan.FromSeconds(retryAttempt * 1.5));
 
+    private static readonly LoggingConfiguration LoggingConfiguration = new XmlLoggingConfiguration("nlog.config");
+
     public static void Main(string[] args)
     {
-        var host = Host.CreateDefaultBuilder(args)
+        // NLog: setup the logger first to catch all errors
+        LogManager.Configuration = LoggingConfiguration;
+        try
+        {
+            var host = Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+                loggingBuilder.AddNLog(LoggingConfiguration);
+            })
             .ConfigureServices((hostContext, services) =>
             {
                 services
@@ -48,6 +64,18 @@ public class Program
             })
             .Build();
 
-        host.Run();
+            host.Run();
+        }
+        catch (Exception ex)
+        {
+            // NLog: catch setup errors
+            LogManager.GetCurrentClassLogger(typeof(Program)).Error(ex, "Stopped program because of exception");
+            throw;
+        }
+        finally
+        {
+            // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+            LogManager.Shutdown();
+        }
     }
 }
