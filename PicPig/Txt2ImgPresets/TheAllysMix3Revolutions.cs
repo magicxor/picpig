@@ -2,7 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets;
 
-// https://civitai.com/models/10752
+// The Ally's Mix III: Revolutions: https://civitai.com/models/10752/the-allys-mix-iii-revolutions
 public class TheAllysMix3Revolutions : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"masterpiece, highest quality, (perfect face:1.1), (high detail:1.1),dramatic,dynamic pose, 1girl, breasts, blonde hair, blue eyes, (finely detailed beautiful eyes: 1.2), solo, cleavage, long hair, curvy, large breasts,see-through, dress,thighs,covered navel, white dress, bare shoulders, (wide hips:0.8), (thick thighs:0.8), lips, covered nipples, robe, pelvic curtain,castle,night,moon, detailed background, art by artgerm and greg rutkowski, cinematic lighting,";

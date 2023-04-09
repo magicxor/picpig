@@ -2,7 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets;
 
-// https://civitai.com/models/4384/dreamshaper
+// DreamShaper: https://civitai.com/models/4384/dreamshaper
 public class DreamShaper4BakedVae : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"8k portrait, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr, rainy, rtx, octane, unreal, detailed background";

@@ -2,6 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets;
 
+// Manter's Batch: https://civitai.com/models/20957/manters-batch-furry-model
 public class MantersBatchFurry : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"Masterpiece, best quality, Wolf_male, detailed_fluffy_fur, uploaded_to_e621, antro, furry_male, Masterpiece, Best_quality, solo, (Antro), kemono art style, sfw";

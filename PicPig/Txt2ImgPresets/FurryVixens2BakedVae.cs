@@ -2,7 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets;
 
-// https://civitai.com/models/17333/furry-vixens
+// Furry Vixens: https://civitai.com/models/17333/furry-vixens
 public class FurryVixens2BakedVae : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"1girl, nsfw, (furry:1.2), (fluffy:1.1), (anthro:1.2), (snout:1.2), short hair, (black hair | red hair), (wizard:1.4, magic:1.2, cleavage), looking at viewer, (fantasy:1.2, city)";

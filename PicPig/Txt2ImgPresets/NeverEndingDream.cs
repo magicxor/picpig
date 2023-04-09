@@ -2,6 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets;
 
+// NeverEnding Dream: https://civitai.com/models/10028/neverending-dream
 public class NeverEndingDream : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"(8k, RAW photo, best quality, masterpiece:1.2), (realistic:1.3), (photorealistic:1.3), ultra-detailed, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3, best quality, beautiful lighting, 1girl, dragon horns, long hair, twintails, (red hair), messy hair, yellow eyes, tight dragon scale armor, medium breasts, pointy ears, black gloves, smug, standing, royal room, medium breasts,";
