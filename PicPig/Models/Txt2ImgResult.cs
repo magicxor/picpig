@@ -2,5 +2,6 @@
 
 public record Txt2ImgResult(
     Stream ImageStream,
-    Txt2ImgQuery Query
+    Txt2ImgQuery Query,
+    TimeSpan ElapsedTime
 );

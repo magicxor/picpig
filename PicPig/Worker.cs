@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Humanizer;
 using Microsoft.Extensions.Options;
 using PicPig.Enums;
 using PicPig.Exceptions;
@@ -92,13 +93,17 @@ public class Worker : BackgroundService
                                 cancellationToken: cancellationToken);
                             await botClient.EditMessageCaptionAsync(
                                 inlineMessageId: chosenInlineResult.InlineMessageId,
-                                caption: $"{txt2ImgResult.Query.PresetFactory.GetType().Name}: {(txt2ImgResult.Query.IgnoreDefaultPrompt ? "!" : "")}{txt2ImgResult.Query.UserPositivePrompt}",
+                                caption: $"{txt2ImgResult.Query.PresetFactory.GetType().Name} ({txt2ImgResult.ElapsedTime.Humanize()}): {(txt2ImgResult.Query.IgnoreDefaultPrompt ? "!" : "")}{txt2ImgResult.Query.UserPositivePrompt}",
                                 cancellationToken: cancellationToken);
                         }
                     },
-                    exception =>
+                    async exception =>
                     {
-                        // todo: rewrite this file
+                        _logger.LogError(exception, "Error while generating image");
+                        await botClient.EditMessageCaptionAsync(
+                            inlineMessageId: chosenInlineResult.InlineMessageId,
+                            caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}",
+                            cancellationToken: cancellationToken);
                     }
                 );
             }

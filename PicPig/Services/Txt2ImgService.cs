@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using OneOf;
 using OneOf.Types;
 using PicPig.Enums;
@@ -30,9 +31,12 @@ public class Txt2ImgService
         return await queryParseResult.Match<Task<OneOf<Txt2ImgResult, ServiceException>>>(
             async txt2ImgQuery =>
             {
+                var stopwatch = Stopwatch.StartNew();
                 var txt2ImgResult = await GenerateImageAsync(txt2ImgQuery, cancellationToken);
+                stopwatch.Stop();
+
                 return txt2ImgResult.Match<OneOf<Txt2ImgResult, ServiceException>>(
-                    stream => new Txt2ImgResult(stream, txt2ImgQuery),
+                    stream => new Txt2ImgResult(stream, txt2ImgQuery, stopwatch.Elapsed),
                     exception => exception);
             },
             exception => Task.FromResult<OneOf<Txt2ImgResult, ServiceException>>(exception));
