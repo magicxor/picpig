@@ -1,10 +1,4 @@
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Trace",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
   "PicPig": {
     "TelegramBotApiKey": "99999:YoUr_Key",
     "BotOwnerUserId": 880055,
