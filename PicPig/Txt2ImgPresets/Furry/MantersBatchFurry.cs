@@ -1,6 +1,6 @@
 using StableDiffusionClient;
 
-namespace PicPig.Txt2ImgPresets;
+namespace PicPig.Txt2ImgPresets.Furry;
 
 // Manter's Batch: https://civitai.com/models/20957/manters-batch-furry-model
 public class MantersBatchFurry : BasePresetFactory

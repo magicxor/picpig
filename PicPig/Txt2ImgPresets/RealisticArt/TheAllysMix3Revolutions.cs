@@ -1,6 +1,6 @@
 using StableDiffusionClient;
 
-namespace PicPig.Txt2ImgPresets;
+namespace PicPig.Txt2ImgPresets.RealisticArt;
 
 // The Ally's Mix III: Revolutions: https://civitai.com/models/10752/the-allys-mix-iii-revolutions
 public class TheAllysMix3Revolutions : BasePresetFactory

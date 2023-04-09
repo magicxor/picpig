@@ -1,9 +1,8 @@
 using StableDiffusionClient;
 
-namespace PicPig.Txt2ImgPresets;
+namespace PicPig.Txt2ImgPresets.Anime;
 
-// DreamShaper: https://civitai.com/models/4384/dreamshaper
-public class DreamShaper4BakedVae : BasePresetFactory
+public class AbyssOrangeMix3 : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"8k portrait, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr, rainy, rtx, octane, unreal, detailed background";
 
@@ -15,7 +14,7 @@ public class DreamShaper4BakedVae : BasePresetFactory
         {
             Override_settings = new
             {
-                sd_model_checkpoint = "dreamshaper_4BakedVae.safetensors",
+                sd_model_checkpoint = "abyssorangemix3AOM3_aom3a1b.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
                 sd_vae = "auto",

@@ -1,6 +1,6 @@
 using StableDiffusionClient;
 
-namespace PicPig.Txt2ImgPresets;
+namespace PicPig.Txt2ImgPresets.RealisticArt;
 
 // NeverEnding Dream: https://civitai.com/models/10028/neverending-dream
 public class NeverEndingDream : BasePresetFactory
