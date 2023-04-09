@@ -92,7 +92,7 @@ public class Worker : BackgroundService
                                 cancellationToken: cancellationToken);
                             await botClient.EditMessageCaptionAsync(
                                 inlineMessageId: chosenInlineResult.InlineMessageId,
-                                caption: chosenInlineResult.Query,
+                                caption: $"{txt2ImgResult.Query.PresetFactory.GetType().Name}: {(txt2ImgResult.Query.IgnoreDefaultPrompt ? "!" : "")}{txt2ImgResult.Query.UserPositivePrompt}",
                                 cancellationToken: cancellationToken);
                         }
                     },
