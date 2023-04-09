@@ -1,5 +1,5 @@
 # picpig
-A telegram bot working as a frontend for stable-diffusion-webui
+A telegram [bot](https://github.com/TelegramBots/Telegram.Bot) working as a frontend for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
 # Demo
 
@@ -11,8 +11,8 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 [model number][!][prompt]
 ```
 
-- model number - a number of model (from 0 to 4: DreamShaper4BakedVae, MantersBatchFurry, FurryVixens2BakedVae, TheAllysMix3Revolutions, NeverEndingDream)
-- ! - specify if you want to ignore the standard prompt
+- `model number` - a number of model (from 0 to 4: DreamShaper4BakedVae, MantersBatchFurry, FurryVixens2BakedVae, TheAllysMix3Revolutions, NeverEndingDream)
+- `!` - specify if you want to ignore the standard prompt
 
 # Models
 
@@ -37,3 +37,17 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - arcaneStyleLora_offset.safetensors
 - openjourneyLora_v1.safetensors
 - torinoAquaStyleLora_v1.safetensors
+
+# WebUI launch script
+
+```bat
+@echo off
+
+set SAFETENSORS_FAST_GPU=1
+set PYTHON=
+set GIT=
+set VENV_DIR=
+set COMMANDLINE_ARGS=--api --api-log --xformers --no-half-vae
+
+call webui.bat
+```
