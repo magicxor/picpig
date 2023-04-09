@@ -23,13 +23,19 @@ public class Txt2ImgService
         _stableDiffusionClient = stableDiffusionClient;
     }
 
-    public async Task<OneOf<Stream, ServiceException>> GetTxt2ImgResultAsync(string userQuery,
+    public async Task<OneOf<Txt2ImgResult, ServiceException>> GenerateImageAsync(string userQuery,
         CancellationToken cancellationToken)
     {
         var queryParseResult = _txt2ImgQueryParser.Parse(userQuery);
-        return await queryParseResult.Match<Task<OneOf<Stream, ServiceException>>>(
-            async txt2ImgQuery => await GetTxt2ImgResultAsync(txt2ImgQuery, cancellationToken),
-            exception => Task.FromResult<OneOf<Stream, ServiceException>>(exception));
+        return await queryParseResult.Match<Task<OneOf<Txt2ImgResult, ServiceException>>>(
+            async txt2ImgQuery =>
+            {
+                var txt2ImgResult = await GenerateImageAsync(txt2ImgQuery, cancellationToken);
+                return txt2ImgResult.Match<OneOf<Txt2ImgResult, ServiceException>>(
+                    stream => new Txt2ImgResult(stream, txt2ImgQuery),
+                    exception => exception);
+            },
+            exception => Task.FromResult<OneOf<Txt2ImgResult, ServiceException>>(exception));
     }
 
     public async Task<TextToImageResponse> GetStableDiffusionResponseAsync(StableDiffusionProcessingTxt2Img request,
@@ -70,7 +76,7 @@ public class Txt2ImgService
         return new Success();
     }
 
-    public async Task<OneOf<Stream, ServiceException>> GetTxt2ImgResultAsync(Txt2ImgQuery txt2ImgQuery,
+    public async Task<OneOf<Stream, ServiceException>> GenerateImageAsync(Txt2ImgQuery txt2ImgQuery,
         CancellationToken cancellationToken)
     {
         try
@@ -80,9 +86,12 @@ public class Txt2ImgService
                 : string.Join(", ", txt2ImgQuery.UserPositivePrompt, txt2ImgQuery.PresetFactory.DefaultPositivePrompt);
 
             var requestData = txt2ImgQuery.PresetFactory.GetRequestData(positivePrompt);
+
             var response = await GetStableDiffusionResponseAsync(requestData, cancellationToken);
+
             var outputStream = new MemoryStream();
             var result = await StableDiffusionResponseToStreamAsync(response, true, outputStream, cancellationToken);
+
             return await result.Match<Task<OneOf<Stream, ServiceException>>>(_ => Task.FromResult<OneOf<Stream, ServiceException>>(outputStream),
                 serviceException => Task.FromResult<OneOf<Stream, ServiceException>>(serviceException));
         }

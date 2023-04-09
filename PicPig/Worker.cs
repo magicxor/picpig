@@ -74,25 +74,25 @@ public class Worker : BackgroundService
                     },
                 }, cancellationToken: cancellationToken);
             }
-            else if (update.ChosenInlineResult?.InlineMessageId != null)
+            else if (update.ChosenInlineResult is { InlineMessageId: not null } chosenInlineResult)
             {
                 _logger.LogInformation("Query: {query}", update.ChosenInlineResult?.Query);
 
-                var result = await _txt2ImgService.GetTxt2ImgResultAsync(update.ChosenInlineResult.Query, cancellationToken);
-                result.Switch(
-                    async stream =>
+                var generateImageResult = await _txt2ImgService.GenerateImageAsync(chosenInlineResult.Query, cancellationToken);
+                generateImageResult.Switch(
+                    async txt2ImgResult =>
                     {
                         var photoMsg = await botClient.SendPhotoAsync(_options.MediaCacheGroupChatId,
-                            new InputMedia(stream, "StableDiffusionImage"), cancellationToken: cancellationToken);
+                            new InputMedia(txt2ImgResult.ImageStream, "StableDiffusionImage"), cancellationToken: cancellationToken);
                         if (photoMsg.Photo != null)
                         {
                             await botClient.EditMessageMediaAsync(
-                                inlineMessageId: update.ChosenInlineResult?.InlineMessageId,
+                                inlineMessageId: chosenInlineResult.InlineMessageId,
                                 media: new InputMediaPhoto(new InputMedia(photoMsg.Photo.First().FileId)),
                                 cancellationToken: cancellationToken);
                             await botClient.EditMessageCaptionAsync(
-                                inlineMessageId: update.ChosenInlineResult?.InlineMessageId,
-                                caption: update.ChosenInlineResult.Query,
+                                inlineMessageId: chosenInlineResult.InlineMessageId,
+                                caption: chosenInlineResult.Query,
                                 cancellationToken: cancellationToken);
                         }
                     },

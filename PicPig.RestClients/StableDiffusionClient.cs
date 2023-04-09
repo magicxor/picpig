@@ -20,7 +20,7 @@ namespace StableDiffusionClient
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Client 
+    public partial class Client
     {
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
@@ -725,7 +725,7 @@ namespace StableDiffusionClient
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     var json_ = Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value);
-                    var dictionary_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(json_, _settings.Value);
+                    var dictionary_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(json_, _settings.Value) ?? new Dictionary<string, string>();
                     var content_ = new System.Net.Http.FormUrlEncodedContent(dictionary_);
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
                     request_.Content = content_;
@@ -823,7 +823,7 @@ namespace StableDiffusionClient
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     var json_ = Newtonsoft.Json.JsonConvert.SerializeObject(body, _settings.Value);
-                    var dictionary_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(json_, _settings.Value);
+                    var dictionary_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string>>(json_, _settings.Value) ?? new Dictionary<string, string>();
                     var content_ = new System.Net.Http.FormUrlEncodedContent(dictionary_);
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
                     request_.Content = content_;
@@ -2850,8 +2850,7 @@ namespace StableDiffusionClient
                         if (status_ == 200)
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = (string)System.Convert.ChangeType(responseData_, typeof(string));
-                            return result_;
+                            return responseData_;
                         }
                         else
                         {
@@ -2927,8 +2926,7 @@ namespace StableDiffusionClient
                         if (status_ == 200)
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = (string)System.Convert.ChangeType(responseData_, typeof(string));
-                            return result_;
+                            return responseData_;
                         }
                         else
                         {
@@ -5924,7 +5922,7 @@ namespace StableDiffusionClient
                     var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
                     if (field != null)
                     {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
                             as System.Runtime.Serialization.EnumMemberAttribute;
                         if (attribute != null)
                         {
@@ -5936,7 +5934,7 @@ namespace StableDiffusionClient
                     return converted == null ? string.Empty : converted;
                 }
             }
-            else if (value is bool) 
+            else if (value is bool)
             {
                 return System.Convert.ToString((bool)value, cultureInfo).ToLowerInvariant();
             }
