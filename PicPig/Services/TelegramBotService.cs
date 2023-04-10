@@ -19,6 +19,9 @@ public class TelegramBotService
     private readonly ITelegramBotClient _telegramBotClient;
     private readonly Txt2ImgService _txt2ImgService;
 
+    private const int MaxTelegramInlineCaptionLength = 256;
+    private const int MaxTelegramMediaCaptionLength = 1024;
+
     private static readonly ReceiverOptions ReceiverOptions = new()
     {
         // receive all update types
@@ -60,7 +63,7 @@ public class TelegramBotService
                 {
                     new InlineQueryResultCachedPhoto(Guid.NewGuid().ToString(), _options.LoadingProgressImageId)
                     {
-                        Caption = inlineQuery.Query.Cut(256, "🎲"),
+                        Caption = inlineQuery.Query.Cut(MaxTelegramInlineCaptionLength, "🎲"),
                         ReplyMarkup = InlineKeyboardButton.WithCallbackData("Please wait..."),
                     },
                 }, cancellationToken: cancellationToken);
@@ -85,7 +88,7 @@ public class TelegramBotService
                             cancellationToken: cancellationToken);
                         await botClient.EditMessageCaptionAsync(
                             inlineMessageId: chosenInlineResult.InlineMessageId,
-                            caption: $"{generateImageResult.Query.PresetFactory.GetType().Name} ({generateImageResult.ElapsedTime.Humanize()}): {(generateImageResult.Query.IgnoreDefaultPrompt ? "!" : "")}{generateImageResult.Query.UserPositivePrompt}".Cut(256),
+                            caption: $"{generateImageResult.Query.PresetFactory.GetType().Name} ({generateImageResult.ElapsedTime.Humanize()}): {(generateImageResult.Query.IgnoreDefaultPrompt ? "!" : "")}{generateImageResult.Query.UserPositivePrompt}".Cut(MaxTelegramMediaCaptionLength),
                             cancellationToken: cancellationToken);
                     }
                 }
@@ -94,7 +97,7 @@ public class TelegramBotService
                     _logger.LogError(exception, "Error while generating an image");
                     await botClient.EditMessageCaptionAsync(
                         inlineMessageId: chosenInlineResult.InlineMessageId,
-                        caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}".Cut(256),
+                        caption: $"ERROR processing {update.ChosenInlineResult?.Query}: {exception}".Cut(MaxTelegramMediaCaptionLength),
                         cancellationToken: cancellationToken);
                 }
             }
