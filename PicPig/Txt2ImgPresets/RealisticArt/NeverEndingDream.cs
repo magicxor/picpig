@@ -1,6 +1,6 @@
 using StableDiffusionClient;
 
-namespace PicPig.Txt2ImgPresets;
+namespace PicPig.Txt2ImgPresets.RealisticArt;
 
 // NeverEnding Dream: https://civitai.com/models/10028/neverending-dream
 public class NeverEndingDream : BasePresetFactory
@@ -50,7 +50,7 @@ public class NeverEndingDream : BasePresetFactory
             Save_images = true,
 
             Enable_hr = true,
-            Hr_scale = 1.5,
+            Hr_scale = 2,
             Hr_upscaler = "R-ESRGAN 4x+ Anime6B",
             Hr_second_pass_steps = 7,
         };
