@@ -38,6 +38,13 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - openjourneyLora_v1.safetensors
 - torinoAquaStyleLora_v1.safetensors
 
+# Embeddings
+
+- [EasyNegative.pt](https://huggingface.co/datasets/gsdf/EasyNegative)
+- [bad-artist.pt](https://huggingface.co/nick-x-hacker/bad-artist)
+- [bad_prompt_version2.pt](https://huggingface.co/datasets/Nerfgun3/bad_prompt)
+- [boring_e621.pt](https://huggingface.co/FoodDesert/boring_e621)
+
 # WebUI launch script
 
 ```bat
