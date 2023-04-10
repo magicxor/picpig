@@ -31,12 +31,18 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 # VAE
 
 - anything-v4.0.vae.pt
+- orangemix.vae.pt
+- Crosskemono.vae.pt
+- kl-f8-anime2.vae.pt
+- vae-ft-mse-840000-ema-pruned.vae.pt
 
 # Lora
 
 - arcaneStyleLora_offset.safetensors
 - openjourneyLora_v1.safetensors
 - torinoAquaStyleLora_v1.safetensors
+- roundGlasses_v1a.safetensors
+- virtualgirlAim_v20.safetensors
 
 # Embeddings
 
