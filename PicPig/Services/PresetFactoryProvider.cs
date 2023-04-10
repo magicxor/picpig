@@ -3,7 +3,6 @@ using PicPig.Exceptions;
 using PicPig.Txt2ImgPresets;
 using PicPig.Txt2ImgPresets.Anime;
 using PicPig.Txt2ImgPresets.Furry;
-using PicPig.Txt2ImgPresets.Photo;
 using PicPig.Txt2ImgPresets.Porn;
 using PicPig.Txt2ImgPresets.RealisticArt;
 
@@ -18,13 +17,11 @@ public class PresetFactoryProvider
         { nameof(FurryVixens2BakedVae), new FurryVixens2BakedVae() },
         { nameof(TheAllysMix3Revolutions), new TheAllysMix3Revolutions() },
         { nameof(NeverEndingDream), new NeverEndingDream() },
-
         { nameof(AbyssOrangeMix3), new AbyssOrangeMix3() },
         { nameof(DarkSushiMix), new DarkSushiMix() },
         { nameof(Bb95FurryMixV2), new Bb95FurryMixV2() },
         { nameof(LawlasYiffymix), new LawlasYiffymix() },
         { nameof(LawlasYiffymix2), new LawlasYiffymix2() },
-        { nameof(CuteGirlMix4), new CuteGirlMix4() },
         { nameof(MilkingMachine), new MilkingMachine() },
         { nameof(Clarity), new Clarity() },
         { nameof(Lyriel), new Lyriel() },

@@ -48,6 +48,11 @@ public class DreamShaper4BakedVae : BasePresetFactory
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "R-ESRGAN 4x+ Anime6B",
+            Hr_second_pass_steps = 7,
         };
     }
 }

@@ -2,6 +2,7 @@ using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets.Anime;
 
+// AbyssOrangeMix3 (AOM3): https://civitai.com/models/9942/abyssorangemix3-aom3
 public class AbyssOrangeMix3 : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"masterpiece, best quality, ultra-detailed, illustration, 1girl, solo, fantasy, flying, broom, night sky, outdoors, magic, spells, moon, stars, clouds, wind, hair, cape, hat, boots, broomstick, glowing, mysterious, enchanting, whimsical, playful, adventurous, freedom, wonder, imagination, determination, skill, speed, movement, energy, realism, naturalistic, figurative, representational, beauty, fantasy culture, mythology, fairy tales, folklore, legends, witches, wizards, magical creatures, fantasy worlds, composition, scale, foreground, middle ground, background, perspective, light, color, texture, detail, beauty, wonder";

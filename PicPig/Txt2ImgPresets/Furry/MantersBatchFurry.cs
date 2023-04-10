@@ -50,7 +50,7 @@ public class MantersBatchFurry : BasePresetFactory
             Save_images = true,
 
             Enable_hr = true,
-            Hr_scale = 1.5,
+            Hr_scale = 2,
             Hr_upscaler = "Latent",
             Hr_second_pass_steps = 7,
         };

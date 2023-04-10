@@ -4,9 +4,9 @@ namespace PicPig.Txt2ImgPresets.RealisticArt;
 
 public class Lyriel : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"8k portrait, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr, rainy, rtx, octane, unreal, detailed background";
+    public override string DefaultPositivePrompt => @"fashion photography portrait of blue human avatar, in blue lush jungle with flowers and birds, 3d render, cgi, symetrical, octane render, 35mm, bokeh, 9:16, (intricate details:1.12), hdr, (intricate details, hyperdetailed:1.15), (natural skin texture, hyperrealism, soft light, sharp:1.2)";
 
-    public override string DefaultNegativePrompt => @"(worst quality, low quality:1.4), (((deformed))), blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, (extra_limb), (ugly), (poorly drawn hands), fused fingers, canvas frame, cartoon, 3d, ((disfigured)), ((bad art)), ((deformed)),((extra limbs)),((close up)),((b&w)), wierd colors, blurry, (((duplicate))), ((morbid)), ((mutilated)), [out of frame], extra fingers, mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), cloned face, (((disfigured))), out of frame, ugly, extra limbs, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands, (fused fingers), (too many fingers), (((long neck))), Photoshop, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, 3d render, mutated eyes, cleavage, sfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, crown, hat, multiple hands, bad hands, bad anatomy, ugly, gallant, blurry, floating, multiple body, duplicate, extra fingers, extra limbs, mutation, deformed, disfigured, morbid, long body, asymmetric, poorly drawn face, cloned face, cloned head, asymmetric ears, asymmetric ear rings, floating hair, (long neck), cross eyed, blinking, winking, makeup, lipstick, eye liner, eyeliner, kitsch, bad art, bad taste, unnatural, staged, missing limb, missing arm, missing leg, floating limb, disconnected limb, extra limb, too many fingers, extra fingers, malformed limbs, malformed hands, poorly drawn hands, (mutated hands), (mutated fingers), mutilated hands, extra tail, missing tail,";
+    public override string DefaultNegativePrompt => @"3d, cartoon, anime, sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, bad anatomy, girl, loli, young, large breasts, red eyes, muscular";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -17,7 +17,7 @@ public class Lyriel : BasePresetFactory
                 sd_model_checkpoint = "lyriel_v13.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
-                sd_vae = "auto",
+                sd_vae = "anything-v4.0.vae.pt",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
@@ -28,12 +28,12 @@ public class Lyriel : BasePresetFactory
             Subseed_strength = 0.0,
             Seed_resize_from_h = 0,
             Seed_resize_from_w = 0,
-            Sampler_name = "DPM++ SDE Karras",
+            Sampler_name = "DPM++2M Karras",
             Batch_size = 1,
             N_iter = 1,
             Steps = samplingSteps,
             Cfg_scale = 7,
-            Width = 512,
+            Width = 384,
             Height = 512,
             Restore_faces = false,
             Tiling = false,
@@ -47,6 +47,11 @@ public class Lyriel : BasePresetFactory
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "Latent",
+            Hr_second_pass_steps = 7,
         };
     }
 }
