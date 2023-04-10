@@ -42,13 +42,18 @@ public class AbyssOrangeMix3 : BasePresetFactory
             Do_not_save_samples = false,
             Do_not_save_grid = true,
             Eta = null,
-            Denoising_strength = 0.5,
+            Denoising_strength = 0.98,
             S_churn = 0.0,
             S_tmax = null,
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
+
+            Enable_hr = true,
+            Hr_scale = 1.3,
+            Hr_upscaler = "R-ESRGAN 4x+ Anime6B",
+            Hr_second_pass_steps = 7,
         };
     }
 }
