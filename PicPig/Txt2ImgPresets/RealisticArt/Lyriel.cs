@@ -28,13 +28,13 @@ public class Lyriel : BasePresetFactory
             Subseed_strength = 0.0,
             Seed_resize_from_h = 0,
             Seed_resize_from_w = 0,
-            Sampler_name = "DPM++2M Karras",
+            Sampler_name = "DPM++ 2M Karras",
             Batch_size = 1,
             N_iter = 1,
             Steps = samplingSteps,
             Cfg_scale = 7,
-            Width = 384,
-            Height = 512,
+            Width = 512,
+            Height = 768,
             Restore_faces = false,
             Tiling = false,
             Do_not_save_samples = false,
@@ -47,11 +47,6 @@ public class Lyriel : BasePresetFactory
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
-
-            Enable_hr = true,
-            Hr_scale = 2,
-            Hr_upscaler = "Latent",
-            Hr_second_pass_steps = 7,
         };
     }
 }

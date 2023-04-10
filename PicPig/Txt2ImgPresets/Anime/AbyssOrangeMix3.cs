@@ -35,8 +35,8 @@ public class AbyssOrangeMix3 : BasePresetFactory
             N_iter = 1,
             Steps = samplingSteps,
             Cfg_scale = 7,
-            Width = 384,
-            Height = 512,
+            Width = 512,
+            Height = 832,
             Restore_faces = false,
             Tiling = false,
             Do_not_save_samples = false,
@@ -49,11 +49,6 @@ public class AbyssOrangeMix3 : BasePresetFactory
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
-
-            Enable_hr = true,
-            Hr_scale = 2,
-            Hr_upscaler = "Latent",
-            Hr_second_pass_steps = 7,
         };
     }
 }
