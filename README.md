@@ -50,6 +50,7 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [bad-artist.pt](https://huggingface.co/nick-x-hacker/bad-artist)
 - [bad_prompt_version2.pt](https://huggingface.co/datasets/Nerfgun3/bad_prompt)
 - [boring_e621.pt](https://huggingface.co/FoodDesert/boring_e621)
+- [ng_deepnegative_v1_75t.pt](https://civitai.com/models/4629/deep-negative-v1x)
 
 # WebUI launch script
 
