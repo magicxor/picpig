@@ -6,9 +6,9 @@ namespace PicPig.Txt2ImgPresets.Porn;
 // todo: highres.fix ?
 public class MilkingMachine : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"(milking machine:1.2), nipples, lactation, medium breasts, cowbell, long hair, elbow gloves, (cow print:1.2), thighhighs, leotard, steam, leaning forward, cowboy shot, indoors, arms behind back,";
+    public override string DefaultPositivePrompt => @"<lora:milkingMachine_v14:1>, nipples, lactation, medium breasts, cowbell, long hair, elbow gloves, (cow print:1.2), thighhighs, leotard, steam, leaning forward, cowboy shot, indoors, arms behind back,";
 
-    public override string DefaultNegativePrompt => @"(EasyNegative:1.0), (monochrome:1.1), (greyscale)";
+    public override string DefaultNegativePrompt => @"(EasyNegative:1.0), (monochrome:1.1), (greyscale),";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -36,19 +36,24 @@ public class MilkingMachine : BasePresetFactory
             Steps = samplingSteps,
             Cfg_scale = 7,
             Width = 512,
-            Height = 832,
+            Height = 512,
             Restore_faces = false,
             Tiling = false,
             Do_not_save_samples = false,
             Do_not_save_grid = true,
             Eta = null,
-            Denoising_strength = 0.23,
+            Denoising_strength = 0.45,
             S_churn = 0.0,
             S_tmax = null,
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "R-ESRGAN 4x+ Anime6B",
+            Hr_second_pass_steps = 7,
         };
     }
 }
