@@ -9,13 +9,7 @@ public class PicPigOptions
     public required string TelegramBotApiKey { get; init; }
 
     [Required]
-    public required long BotOwnerUserId { get; init; }
-
-    [Required]
     public required long MediaCacheGroupChatId { get; init; }
-
-    [Required]
-    public required string LoadingProgressJpegBase64 { get; init; }
 
     [Required]
     public required string LoadingProgressImageId { get; init; }
