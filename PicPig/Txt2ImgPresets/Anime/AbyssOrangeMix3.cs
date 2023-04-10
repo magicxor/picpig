@@ -4,9 +4,9 @@ namespace PicPig.Txt2ImgPresets.Anime;
 
 public class AbyssOrangeMix3 : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"8k portrait, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr, rainy, rtx, octane, unreal, detailed background";
+    public override string DefaultPositivePrompt => @"masterpiece, best quality, ultra-detailed, illustration, 1girl, solo, fantasy, flying, broom, night sky, outdoors, magic, spells, moon, stars, clouds, wind, hair, cape, hat, boots, broomstick, glowing, mysterious, enchanting, whimsical, playful, adventurous, freedom, wonder, imagination, determination, skill, speed, movement, energy, realism, naturalistic, figurative, representational, beauty, fantasy culture, mythology, fairy tales, folklore, legends, witches, wizards, magical creatures, fantasy worlds, composition, scale, foreground, middle ground, background, perspective, light, color, texture, detail, beauty, wonder";
 
-    public override string DefaultNegativePrompt => @"(worst quality, low quality:1.4), (((deformed))), blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, (extra_limb), (ugly), (poorly drawn hands), fused fingers, canvas frame, cartoon, 3d, ((disfigured)), ((bad art)), ((deformed)),((extra limbs)),((close up)),((b&w)), wierd colors, blurry, (((duplicate))), ((morbid)), ((mutilated)), [out of frame], extra fingers, mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), cloned face, (((disfigured))), out of frame, ugly, extra limbs, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands, (fused fingers), (too many fingers), (((long neck))), Photoshop, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, 3d render, mutated eyes, cleavage, sfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, crown, hat, multiple hands, bad hands, bad anatomy, ugly, gallant, blurry, floating, multiple body, duplicate, extra fingers, extra limbs, mutation, deformed, disfigured, morbid, long body, asymmetric, poorly drawn face, cloned face, cloned head, asymmetric ears, asymmetric ear rings, floating hair, (long neck), cross eyed, blinking, winking, makeup, lipstick, eye liner, eyeliner, kitsch, bad art, bad taste, unnatural, staged, missing limb, missing arm, missing leg, floating limb, disconnected limb, extra limb, too many fingers, extra fingers, malformed limbs, malformed hands, poorly drawn hands, (mutated hands), (mutated fingers), mutilated hands, extra tail, missing tail,";
+    public override string DefaultNegativePrompt => @"(worst quality, low quality:1.4), (lip, nose, tooth, rouge, lipstick, eyeshadow:1.4), (jpeg artifacts:1.4), (depth of field, bokeh, blurry, film grain, chromatic aberration, lens flare:1.0), greyscale, monochrome, dusty sunbeams, trembling, motion lines, motion blur, emphasis lines, text, title, logo, signature";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -17,7 +17,8 @@ public class AbyssOrangeMix3 : BasePresetFactory
                 sd_model_checkpoint = "abyssorangemix3AOM3_aom3a1b.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
-                sd_vae = "auto",
+                // maybe orangemix.vae.pt is better?
+                sd_vae = "kl-f8-anime2.vae.pt",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
@@ -33,20 +34,25 @@ public class AbyssOrangeMix3 : BasePresetFactory
             N_iter = 1,
             Steps = samplingSteps,
             Cfg_scale = 7,
-            Width = 512,
+            Width = 384,
             Height = 512,
             Restore_faces = false,
             Tiling = false,
             Do_not_save_samples = false,
             Do_not_save_grid = true,
             Eta = null,
-            Denoising_strength = 0.4,
+            Denoising_strength = 0.5,
             S_churn = 0.0,
             S_tmax = null,
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = true,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "Latent",
+            Hr_second_pass_steps = 7,
         };
     }
 }
