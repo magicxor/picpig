@@ -18,7 +18,7 @@ public class MantersBatchFurry : BasePresetFactory
                 sd_model_checkpoint = "mantersBatchFurry_mantersBatchV3.safetensors",
                 eta_noise_seed_delta = 0,
                 CLIP_stop_at_last_layers = 1,
-                sd_vae = "auto",
+                sd_vae = "Crosskemono.vae.pt",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
