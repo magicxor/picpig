@@ -33,7 +33,7 @@ public class AbyssOrangeMix3 : BasePresetFactory
             Sampler_name = "DPM++ SDE Karras",
             Batch_size = 1,
             N_iter = 1,
-            Steps = 12,
+            Steps = samplingSteps,
             Cfg_scale = 7,
             Width = 768,
             Height = 512,
