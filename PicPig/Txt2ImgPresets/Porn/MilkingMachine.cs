@@ -3,7 +3,6 @@ using StableDiffusionClient;
 namespace PicPig.Txt2ImgPresets.Porn;
 
 // Milking machine: https://civitai.com/models/8500/milking-machine
-// todo: highres.fix ?
 public class MilkingMachine : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"<lora:milkingMachine_v14:1>, nipples, lactation, medium breasts, cowbell, long hair, elbow gloves, (cow print:1.2), thighhighs, leotard, steam, leaning forward, cowboy shot, indoors, arms behind back,";

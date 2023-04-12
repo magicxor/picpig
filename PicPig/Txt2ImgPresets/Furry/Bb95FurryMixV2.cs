@@ -3,7 +3,6 @@ using StableDiffusionClient;
 namespace PicPig.Txt2ImgPresets.Furry;
 
 // BB95 Furry Mix v2: https://civitai.com/models/17649/bb95-furry-mix-v2
-// todo: Hires Fix ?
 public class Bb95FurryMixV2 : BasePresetFactory
 {
     public override string DefaultPositivePrompt => @"anthro white wolf, white fur, adult, solo, pose, fit body, shorts, topless, tails, looking at viewer, realistic eyes, realistic fur, realistic hands, pubic hair, veiny muscles, (((cinematic lighting, outside background))), photorealistic, detailed fur";
