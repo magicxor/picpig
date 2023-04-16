@@ -2,10 +2,15 @@
 
 public static class StringExtensions
 {
-    public static string Cut(this string src, int maxLength, string? defaultStr = null)
+    public static string Cut(this string src, int maxLength)
     {
-        if (string.IsNullOrEmpty(src) && !string.IsNullOrEmpty(defaultStr))
-            return defaultStr;
-        return src.Length <= maxLength ? src : src[..(maxLength - 1)];
+        if (maxLength <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(maxLength), $"{nameof(maxLength)} must be greater than 0");
+        }
+
+        return src.Length <= maxLength
+            ? src
+            : src[..maxLength];
     }
 }

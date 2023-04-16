@@ -59,11 +59,12 @@ public class TelegramBotService
                     inlineQuery.Query.Length,
                     inlineQuery.Query);
 
+                var inlineCaption = inlineQuery.Query.Cut(MaxTelegramInlineCaptionLength);
                 await botClient.AnswerInlineQueryAsync(inlineQuery.Id, new List<InlineQueryResult>
                 {
                     new InlineQueryResultCachedPhoto(Guid.NewGuid().ToString(), _options.LoadingProgressImageId)
                     {
-                        Caption = inlineQuery.Query.Cut(MaxTelegramInlineCaptionLength, "🎲"),
+                        Caption = string.IsNullOrWhiteSpace(inlineCaption) ? "🎲" : inlineCaption,
                         ReplyMarkup = InlineKeyboardButton.WithCallbackData("Please wait..."),
                     },
                 }, cancellationToken: cancellationToken);
