@@ -22,6 +22,7 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [NeverEnding Dream](https://civitai.com/models/10028/neverending-dream)
 - [ReV Animated](https://civitai.com/models/7371/rev-animated)
 - [Dark Sushi Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
+- [Lyriel](https://civitai.com/models/22922/lyriel)
 
 # Upscalers
 
@@ -38,11 +39,12 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 
 # Lora
 
-- arcaneStyleLora_offset.safetensors
-- openjourneyLora_v1.safetensors
-- torinoAquaStyleLora_v1.safetensors
-- roundGlasses_v1a.safetensors
-- virtualgirlAim_v20.safetensors
+- [arcaneStyleLora_offset.safetensors](https://civitai.com/models/7094/arcane-style-lora)
+- [openjourneyLora_v1.safetensors](https://civitai.com/models/86/openjourney-aka-midjourney-v4)
+- [torinoAquaStyleLora_v1.safetensors](https://civitai.com/models/5126/torino-aqua-style-lora)
+- [roundGlasses_v1a.safetensors](https://civitai.com/models/21285/round-glasses-or-accessory)
+- [virtualgirlAim_v20.safetensors](https://huggingface.co/jomcs/NeverEnding_Dream-Feb19-2023/tree/main/Realistic%20LORA)
+- [hannahOwo_v1.safetensors](https://civitai.com/models/14959/hannah-owo)
 
 # Embeddings
 
