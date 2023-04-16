@@ -17,10 +17,12 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 # Models
 
 - [DreamShaper](https://civitai.com/models/4384/dreamshaper)
-- [Manter's Batch](https://civitai.com/models/20957/manters-batch-furry-model)
 - [Furry Vixens](https://civitai.com/models/17333/furry-vixens)
 - [The Ally's Mix III: Revolutions](https://civitai.com/models/10752/the-allys-mix-iii-revolutions)
 - [NeverEnding Dream](https://civitai.com/models/10028/neverending-dream)
+- [ReV Animated](https://civitai.com/models/7371/rev-animated)
+- [Dark Sushi Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
+- [Lyriel](https://civitai.com/models/22922/lyriel)
 
 # Upscalers
 
@@ -30,19 +32,19 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 
 # VAE
 
-- anything-v4.0.vae.pt
-- orangemix.vae.pt
-- Crosskemono.vae.pt
-- kl-f8-anime2.vae.pt
-- vae-ft-mse-840000-ema-pruned.vae.pt
+- [anything-v4.0.vae.pt](https://huggingface.co/andite/anything-v4.0)
+- [orangemix.vae.pt](https://huggingface.co/WarriorMama777/OrangeMixs/tree/main/VAEs)
+- [kl-f8-anime2.vae.pt](https://huggingface.co/Norisuke193/kl-f8-anime2)
+- [vae-ft-mse-840000-ema-pruned.vae.pt](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)
 
 # Lora
 
-- arcaneStyleLora_offset.safetensors
-- openjourneyLora_v1.safetensors
-- torinoAquaStyleLora_v1.safetensors
-- roundGlasses_v1a.safetensors
-- virtualgirlAim_v20.safetensors
+- [arcaneStyleLora_offset.safetensors](https://civitai.com/models/7094/arcane-style-lora)
+- [openjourneyLora_v1.safetensors](https://civitai.com/models/86/openjourney-aka-midjourney-v4)
+- [torinoAquaStyleLora_v1.safetensors](https://civitai.com/models/5126/torino-aqua-style-lora)
+- [roundGlasses_v1a.safetensors](https://civitai.com/models/21285/round-glasses-or-accessory)
+- [virtualgirlAim_v20.safetensors](https://huggingface.co/jomcs/NeverEnding_Dream-Feb19-2023/tree/main/Realistic%20LORA)
+- [hannahOwo_v1.safetensors](https://civitai.com/models/14959/hannah-owo)
 
 # Embeddings
 
@@ -51,6 +53,7 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [bad_prompt_version2.pt](https://huggingface.co/datasets/Nerfgun3/bad_prompt)
 - [boring_e621.pt](https://huggingface.co/FoodDesert/boring_e621)
 - [ng_deepnegative_v1_75t.pt](https://civitai.com/models/4629/deep-negative-v1x)
+- [badhandv4](https://civitai.com/models/16993/badhandv4-animeillustdiffusion)
 
 # WebUI launch script
 
