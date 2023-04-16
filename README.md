@@ -17,7 +17,6 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 # Models
 
 - [DreamShaper](https://civitai.com/models/4384/dreamshaper)
-- [Manter's Batch](https://civitai.com/models/20957/manters-batch-furry-model)
 - [Furry Vixens](https://civitai.com/models/17333/furry-vixens)
 - [The Ally's Mix III: Revolutions](https://civitai.com/models/10752/the-allys-mix-iii-revolutions)
 - [NeverEnding Dream](https://civitai.com/models/10028/neverending-dream)
@@ -32,11 +31,10 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 
 # VAE
 
-- anything-v4.0.vae.pt
-- orangemix.vae.pt
-- Crosskemono.vae.pt
-- kl-f8-anime2.vae.pt
-- vae-ft-mse-840000-ema-pruned.vae.pt
+- [anything-v4.0.vae.pt](https://huggingface.co/andite/anything-v4.0)
+- [orangemix.vae.pt](https://huggingface.co/WarriorMama777/OrangeMixs/tree/main/VAEs)
+- [kl-f8-anime2.vae.pt](https://huggingface.co/Norisuke193/kl-f8-anime2)
+- [vae-ft-mse-840000-ema-pruned.vae.pt](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)
 
 # Lora
 
