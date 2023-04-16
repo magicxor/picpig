@@ -21,6 +21,8 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [Furry Vixens](https://civitai.com/models/17333/furry-vixens)
 - [The Ally's Mix III: Revolutions](https://civitai.com/models/10752/the-allys-mix-iii-revolutions)
 - [NeverEnding Dream](https://civitai.com/models/10028/neverending-dream)
+- [ReV Animated](https://civitai.com/models/7371/rev-animated)
+- [Dark Sushi Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
 
 # Upscalers
 
@@ -51,6 +53,7 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [bad_prompt_version2.pt](https://huggingface.co/datasets/Nerfgun3/bad_prompt)
 - [boring_e621.pt](https://huggingface.co/FoodDesert/boring_e621)
 - [ng_deepnegative_v1_75t.pt](https://civitai.com/models/4629/deep-negative-v1x)
+- [badhandv4](https://civitai.com/models/16993/badhandv4-animeillustdiffusion)
 
 # WebUI launch script
 
