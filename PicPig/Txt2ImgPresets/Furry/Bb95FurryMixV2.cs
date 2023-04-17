@@ -38,7 +38,7 @@ public class Bb95FurryMixV2 : BasePresetFactory
             Height = 512,
             Restore_faces = false,
             Tiling = false,
-            Do_not_save_samples = false,
+            Do_not_save_samples = true,
             Do_not_save_grid = true,
             Eta = null,
             Denoising_strength = 0.6,
