@@ -23,6 +23,11 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [ReV Animated](https://civitai.com/models/7371/rev-animated)
 - [Dark Sushi Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
 - [Lyriel](https://civitai.com/models/22922/lyriel)
+- [MeinaMix](https://civitai.com/models/7240/meinamix)
+- [Counterfeit-V2.5](https://civitai.com/models/4468/counterfeit-v25)
+- [GalaxyTimeMachine's "ForYou-Fantasy"](https://civitai.com/models/25611/galaxytimemachines-foryou-fantasy-fantasyai)
+- [SXZ Luma](https://civitai.com/models/25831/sxz-luma)
+- [Dungeons N Waifu's](https://civitai.com/models/11718/dungeons-n-waifus-new-version-22)
 
 # [Upscalers](https://upscale.wiki/wiki/Model_Database)
 
