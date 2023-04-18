@@ -1,13 +1,13 @@
-using StableDiffusionClient;
+﻿using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets.Anime;
 
-// Dark Sushi Mix 大颗寿司Mix: https://civitai.com/models/24779/dark-sushi-mix-mix
-public class DarkSushiMix : BasePresetFactory
+// MeinaMix: https://civitai.com/models/7240/meinamix
+public class MeinaMix : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"masterpiece, best quality, 1girl, (colorful),(finely detailed beautiful eyes and detailed face),cinematic lighting,bust shot,extremely detailed CG unity 8k wallpaper,white hair,solo,smile,intricate skirt,((flying petal)),(Flowery meadow) sky, cloudy_sky, building, moonlight, moon, night, (dark theme:1.3), light, fantasy,";
+    public override string DefaultPositivePrompt => @"realistic, 1girl, blue hair, horns, multicolored eyes, glowing, blue eye, purple eye, bare shoulders, demon eyes, magic circle, light particles, light rays, wallpaper,";
 
-    public override string DefaultNegativePrompt => @"sketch, duplicate, ugly, huge eyes, text, logo, monochrome, worst face, (bad and mutated hands:1.3), (worst quality:2.0), (low quality:2.0), (blurry:2.0), horror, geometry, bad_prompt, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), ((2girl)), (deformed fingers:1.2), (long fingers:1.2),(bad-artist-anime), bad-artist, bad hand, extra legs";
+    public override string DefaultNegativePrompt => @"(worst quality:2, low quality:2), (zombie, sketch, interlocked fingers, comic), EasyNegative, monochrome, wrong_hand, wrong_feet, text, signature, watermark, username, extra digit, fewer digits, bad hands, bad anatomy, bad-artist, badhandv4";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -15,10 +15,10 @@ public class DarkSushiMix : BasePresetFactory
         {
             Override_settings = new
             {
-                sd_model_checkpoint = "darkSushiMixMix_brighterPruned.safetensors",
+                sd_model_checkpoint = "meinamix_meinaV9.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
-                sd_vae = "vae-ft-mse-840000-ema-pruned.vae.pt",
+                sd_vae = "auto",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
@@ -29,11 +29,11 @@ public class DarkSushiMix : BasePresetFactory
             Subseed_strength = 0.0,
             Seed_resize_from_h = 0,
             Seed_resize_from_w = 0,
-            Sampler_name = "DPM++ SDE Karras",
+            Sampler_name = "Euler a",
             Batch_size = 1,
             N_iter = 1,
-            Steps = samplingSteps,
-            Cfg_scale = 9,
+            Steps = 40,
+            Cfg_scale = 7,
             Width = 384,
             Height = 512,
             Restore_faces = false,
@@ -51,7 +51,7 @@ public class DarkSushiMix : BasePresetFactory
 
             Enable_hr = true,
             Hr_scale = 2,
-            Hr_upscaler = "Latent",
+            Hr_upscaler = "R-ESRGAN 4x+ Anime6B",
             Hr_second_pass_steps = 7,
         };
     }

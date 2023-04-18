@@ -26,7 +26,13 @@ public class PresetFactoryProvider
         { nameof(Clarity), new Clarity() },
         { nameof(Lyriel), new Lyriel() },
         { nameof(RevAnimated), new RevAnimated() },
-
+        { nameof(Counterfeit), new Counterfeit() },
+        { nameof(MeinaMix), new MeinaMix() },
+        { nameof(ExtraThinRiceV08), new ExtraThinRiceV08() },
+        { nameof(HassakuHentai), new HassakuHentai() },
+        { nameof(DungeonsNWaifusNew), new DungeonsNWaifusNew() },
+        { nameof(GalaxyTimeMachineFantasy), new GalaxyTimeMachineFantasy() },
+        { nameof(SxzLuma), new SxzLuma() },
     }.AsReadOnly();
 
     private readonly Random _random = new();

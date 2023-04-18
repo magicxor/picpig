@@ -47,7 +47,7 @@ public class RevAnimated : BasePresetFactory
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
-            Save_images = true,
+            Save_images = false,
 
             Enable_hr = true,
             Hr_scale = 2,

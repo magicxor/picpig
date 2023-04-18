@@ -1,12 +1,13 @@
-using StableDiffusionClient;
+﻿using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets.RealisticArt;
 
-public class Lyriel : BasePresetFactory
+// SXZ Luma: https://civitai.com/models/25831/sxz-luma
+public class SxzLuma : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"fashion photography portrait of blue human avatar, in blue lush jungle with flowers and birds, 3d render, cgi, symetrical, octane render, 35mm, bokeh, 9:16, (intricate details:1.12), hdr, (intricate details, hyperdetailed:1.15), (natural skin texture, hyperrealism, soft light, sharp:1.2)";
+    public override string DefaultPositivePrompt => @"best quality, intricate details, 1girl,ahri, ahri \(league of legends\), red and white kimino, cleavage, marks on face, yellow eyes, fox ears, fox tails, long black hair, messy hair, (flaming fox tails:1.3), space, stars, clouds, shiny, celestial, woman, goddess, wavy, purple cosmic dust, serenity, distinct, outerspace, earth,milky_way,starry";
 
-    public override string DefaultNegativePrompt => @"3d, cartoon, anime, sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, bad anatomy, girl, loli, young, large breasts, red eyes, muscular";
+    public override string DefaultNegativePrompt => @"(worst quality:1.4), (low quality:1.4), (monochrome:1.1), easynegative, bad-artist-anime, bad-image-v2-39000, bad_prompt_version2, bad_quality, ng_deepnegative_v1_75t, verybadimagenegative_v1.1-6400, vile_prompt3, bad-hands-5";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -14,10 +15,10 @@ public class Lyriel : BasePresetFactory
         {
             Override_settings = new
             {
-                sd_model_checkpoint = "lyriel_v13.safetensors",
+                sd_model_checkpoint = "sxzLuma_092.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
-                sd_vae = "anything-v4.0.vae.pt",
+                sd_vae = "kl-f8-anime2.vae.pt",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
@@ -40,13 +41,18 @@ public class Lyriel : BasePresetFactory
             Do_not_save_samples = true,
             Do_not_save_grid = true,
             Eta = null,
-            Denoising_strength = 0.4,
+            Denoising_strength = 0.45,
             S_churn = 0.0,
             S_tmax = null,
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = false,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "4x-UltraSharp",
+            Hr_second_pass_steps = 7,
         };
     }
 }

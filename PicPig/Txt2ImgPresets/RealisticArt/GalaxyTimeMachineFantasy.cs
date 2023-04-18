@@ -1,12 +1,13 @@
-using StableDiffusionClient;
+﻿using StableDiffusionClient;
 
 namespace PicPig.Txt2ImgPresets.RealisticArt;
 
-public class Lyriel : BasePresetFactory
+// GalaxyTimeMachine's "ForYou-Fantasy": https://civitai.com/models/25611/galaxytimemachines-foryou-fantasy-fantasyai
+public class GalaxyTimeMachineFantasy : BasePresetFactory
 {
-    public override string DefaultPositivePrompt => @"fashion photography portrait of blue human avatar, in blue lush jungle with flowers and birds, 3d render, cgi, symetrical, octane render, 35mm, bokeh, 9:16, (intricate details:1.12), hdr, (intricate details, hyperdetailed:1.15), (natural skin texture, hyperrealism, soft light, sharp:1.2)";
+    public override string DefaultPositivePrompt => @"Man at edge of creation of the universe";
 
-    public override string DefaultNegativePrompt => @"3d, cartoon, anime, sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, bad anatomy, girl, loli, young, large breasts, red eyes, muscular";
+    public override string DefaultNegativePrompt => @"sketch, comic, (loli:1.2), (child:1.2), (aged down:1.2), disfigured, missing limbs, extra limbs, extra legs, extra arms, cartoon, 3d, deformed eyes, bad-hands-5";
 
     public override StableDiffusionProcessingTxt2Img GetRequestData(string? positivePrompt, int samplingSteps = DefaultSamplingSteps)
     {
@@ -14,10 +15,10 @@ public class Lyriel : BasePresetFactory
         {
             Override_settings = new
             {
-                sd_model_checkpoint = "lyriel_v13.safetensors",
+                sd_model_checkpoint = "galaxytimemachines_v10.safetensors",
                 eta_noise_seed_delta = 31337,
                 CLIP_stop_at_last_layers = 2,
-                sd_vae = "anything-v4.0.vae.pt",
+                sd_vae = "auto",
             },
             Override_settings_restore_afterwards = false,
             Prompt = positivePrompt,
@@ -28,25 +29,30 @@ public class Lyriel : BasePresetFactory
             Subseed_strength = 0.0,
             Seed_resize_from_h = 0,
             Seed_resize_from_w = 0,
-            Sampler_name = "DPM++ 2M Karras",
+            Sampler_name = "DPM++ SDE Karras",
             Batch_size = 1,
             N_iter = 1,
             Steps = samplingSteps,
-            Cfg_scale = 7,
+            Cfg_scale = 5.5,
             Width = 512,
-            Height = 768,
+            Height = 512,
             Restore_faces = false,
             Tiling = false,
             Do_not_save_samples = true,
             Do_not_save_grid = true,
             Eta = null,
-            Denoising_strength = 0.4,
+            Denoising_strength = 0.5,
             S_churn = 0.0,
             S_tmax = null,
             S_tmin = 0.0,
             S_noise = 1.0,
             Sampler_index = null,
             Save_images = false,
+
+            Enable_hr = true,
+            Hr_scale = 2,
+            Hr_upscaler = "4x_Valar_v1",
+            Hr_second_pass_steps = 7,
         };
     }
 }
