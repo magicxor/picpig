@@ -24,7 +24,7 @@ https://user-images.githubusercontent.com/8275793/230755520-da1b77a6-e566-465e-9
 - [Dark Sushi Mix](https://civitai.com/models/24779/dark-sushi-mix-mix)
 - [Lyriel](https://civitai.com/models/22922/lyriel)
 
-# Upscalers
+# [Upscalers](https://upscale.wiki/wiki/Model_Database)
 
 - 4x_fatal_Anime_500000_G.pth
 - 4x_foolhardy_Remacri.pth
